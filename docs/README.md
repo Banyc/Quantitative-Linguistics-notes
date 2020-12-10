@@ -5,4 +5,4 @@
 ## Credits
 
 - doc framework - <https://docsify.js.org/>
-- `index.html` styling - <https://github.com/zllz4/HEVC-notes/edit/master/index.html>
+- `index.html` styling - <https://github.com/zllz4/HEVC-notes/blob/master/index.html>
