@@ -157,13 +157,13 @@ $$
 $$
 
 $$
-= u_o - \cfrac {\sum ^V _{x = 1} e ^ {u ^T _o * v_c } * u_x} {\sum ^V _{w = 1} e ^{u^T_w * v_c}}
+= u_o - \cfrac {\sum ^V _{x = 1} (e ^ {u ^T _o * v_c } * u_x)} {\sum ^V _{w = 1} e ^{u^T_w * v_c}}
 $$
 
 $$
-= u_o - \sum ^V _{x = 1} \cfrac {e ^ {u ^T _o * v_c }} {\sum ^V _{w = 1} * e ^{u^T_w * v_c}} * u_x
+= u_o - \sum ^V _{x = 1} (\cfrac {e ^ {u ^T _o * v_c }} {\sum ^V _{w = 1} e ^{u^T_w * v_c}} * u_x)
 $$
 
 $$
-= u_o - \sum ^V _{x = 1} P(x | c) * u_x
+= u_o - \sum ^V _{x = 1} (P(x | c) * u_x)
 $$
