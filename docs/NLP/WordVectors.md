@@ -119,7 +119,7 @@ To put all word vectors to the vector space in the proper location. ![](img/2020
     -   := a loss function
         -   aim to be minimized
     -   `-1` := the better prediction, the smaller loss
-    -   `1 / T` := decouple with size of corpus
+    -   $\cfrac{1}{T}$ := decouple with size of corpus
     -   `log()` always put on a product
 
 
