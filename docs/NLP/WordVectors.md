@@ -72,9 +72,7 @@ banking = [0.286, 0.792, -0.177, -0.107, 0.109, -0.542, 0.349, 0.271]
 
 ### Overview
 
-To put all word vectors to the vector space in the proper location.
-
-    ![](img/2020-12-12-16-12-16.png)
+To put all word vectors to the vector space in the proper location. ![](img/2020-12-12-16-12-16.png)
 
 1.  Neural network: having `into` --{predict}--> `problems`, `turing`, `banking`, `crises`
 1.  Change word vectors
@@ -110,7 +108,7 @@ To put all word vectors to the vector space in the proper location.
                 {
                     continue;
                 }
-                
+
                 var context_word = corpus[t + j];
                 likelihood *= P(context_word, center_word, theta)
             }
