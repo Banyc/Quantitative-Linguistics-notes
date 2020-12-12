@@ -167,3 +167,20 @@ $$
 $$
 = u_o - \sum ^V _{x = 1} (P(x | c) * u_x)
 $$
+
+### Optimization
+
+Stochastic Gradient Descent
+
+-   Intuitive:
+
+    ![](img/2020-12-13-01-27-19.png)
+
+-   mini-batches
+-   batch := a random window sample
+-   Cons:
+    -   some 32 batches have only hundreds distinct words but the entire vocabulary is way larger than that.
+    -   ![](img/2020-12-13-01-35-02.png)
+    -   solution
+        -   assign selected rows to the slices of `theta_grad`? or `theta`?
+
