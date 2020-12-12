@@ -139,4 +139,31 @@ To put all word vectors to the vector space in the proper location. ![](img/2020
 -   `w` := every word in the entire vocabulary
 -   The softmax function is a function that turns a vector of K real values into a vector of K real values that sum to 1
 
+### Training model
 
+![](img/2020-12-12-21-27-27.png)
+
+-   shape of `θ` := `[2V, d]`
+    -   in `θ` there are `2V` vectors
+    -   each vector has `d` dimensions
+-   `u` and `v` vectors are initialized randomly
+
+Learn more from the back propagation...
+
+Gradient:
+
+$$
+\cfrac {\partial log(P(o | c))} {\partial v_c}
+$$
+
+$$
+= u_o - \cfrac {\sum ^V _{x = 1} e ^ {u ^T _o * v_c } * u_x} {\sum ^V _{w = 1} e ^{u^T_w * v_c}}
+$$
+
+$$
+= u_o - \sum ^V _{x = 1} \cfrac {e ^ {u ^T _o * v_c }} {\sum ^V _{w = 1} * e ^{u^T_w * v_c}} * u_x
+$$
+
+$$
+= u_o - \sum ^V _{x = 1} P(x | c) * u_x
+$$
