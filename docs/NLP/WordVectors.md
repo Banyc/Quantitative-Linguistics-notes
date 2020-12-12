@@ -66,7 +66,62 @@ banking = [0.286, 0.792, -0.177, -0.107, 0.109, -0.542, 0.349, 0.271]
         -   ![](img/2020-12-12-15-28-03.png)
         -   ![](img/2020-12-12-15-28-21.png)
         -   pattern: similarity
+-   value of each dimension <- learned by algorithm. (black box)
 
 ## Word2vec
 
 ### Overview
+
+To put all word vectors to the vector space in the proper location.
+
+    ![](img/2020-12-12-16-12-16.png)
+
+1.  Neural network: having `into` --{predict}--> `problems`, `turing`, `banking`, `crises`
+1.  Change word vectors
+1.  go to the next word ![](img/2020-12-12-16-15-27.png)
+1.  loop
+
+### Objective function
+
+![](img/2020-12-12-16-24-21.png)
+
+-   Likelihood
+
+    -   Time complexity = `O((T) * (2 * m))`
+    -   Intuitive:
+
+        ```csharp
+        int m;  // given window size
+        int T;  // given size of corpus
+        double theta;  // given all hyper variables θ to be optimized
+        int t;  // index of center word
+        double likelihood = 1;
+
+        // foreach (var word in the_corpus)
+        for (t = 0; t < T; t++)
+        {
+            var center_word = corpus[t];
+            int j;
+            // for each context word within the window
+            for (j = -m; j < m; j++)
+            {
+                // ignore center word
+                if (j == 0)
+                {
+                    continue;
+                }
+                
+                var context_word = corpus[t + j];
+                likelihood *= P(context_word, center_word, theta)
+            }
+        }
+        ```
+
+-   objective function
+    -   := a loss function
+        -   aim to be minimized
+    -   `-1` := the better prediction, the smaller loss
+    -   `1 / T` := decouple with size of corpus
+    -   `log()` always put on a product
+
+
