@@ -122,4 +122,21 @@ To put all word vectors to the vector space in the proper location. ![](img/2020
     -   $\cfrac{1}{T}$ := decouple with size of corpus
     -   `log()` always put on a product
 
+### Prediction function
+
+![](img/2020-12-12-17-27-40.png)
+
+![](img/2020-12-12-17-22-03.png)
+
+-   $v_{w}$ := `w` is a **center word**
+-   $u_{w}$ := `w` is a **context word**
+-   `o` := a context word
+-   `c` := a center word
+-   `V` := entire vocabulary
+    -   a symbol table
+    -   a list having all words in the corpus
+    -   has removed the replicas
+-   `w` := every word in the entire vocabulary
+-   The softmax function is a function that turns a vector of K real values into a vector of K real values that sum to 1
+
 
