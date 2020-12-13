@@ -128,16 +128,16 @@ To put all word vectors to the vector space in the proper location. ![](img/2020
                     -   ![](img/2020-12-13-11-59-45.png)
                     -   $\sigma (x) = \cfrac {1} {1 + e ^{-x}}$
             -   intuitive goal:
-                1.  take all the words that have shown up and give them big possibilities (scores);
-                1.  and take negative sampling some random words that have not shown up and give them as small possibilities (scores) as possible.
-                    -   `-1` in $-u_k^T v_c$: make random words with small possibilities (scores).
+                1.  take all the words that have shown up and give them big probabilities (scores);
+                1.  and take negative sampling some random words that have not shown up and give them as small probabilities (scores) as possible.
+                    -   `-1` in $-u_k^T v_c$: make random words with small probabilities (scores).
                         -   it flip the result by axis y in sigmoid.
-                        -   Meaning `1 - possibility`.
+                        -   Meaning `1 - probability`.
             -   `K`: could be 10, 15 negative samples.
             -   How to sample?
                 -   ![](img/2020-12-13-12-10-17.png)
                 -   `w` := every word in the entire vocabulary.
-                -   `P(w)` := the possibility of being picked as a negative sample word?
+                -   `P(w)` := the probability of being picked as a negative sample word?
                     -   a probability distribution.
                 -   `U(w)` sums up the count of the word for every word in the vocabulary.
                 -   `Z`: the size of the entire vocabulary.
