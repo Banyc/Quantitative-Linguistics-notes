@@ -121,6 +121,28 @@ To put all word vectors to the vector space in the proper location. ![](img/2020
     -   `-1` := the better prediction, the smaller loss
     -   $\cfrac{1}{T}$ := decouple with size of corpus
     -   `log()` always put on a product
+    -   Con: need to sum up the entire vocabulary.
+        -   solution: the skip-gram model with negative sampling:
+            -   ![](img/2020-12-13-11-54-44.png)
+                -   $\sigma$ := sigmoid function
+                    -   ![](img/2020-12-13-11-59-45.png)
+                    -   $\sigma (x) = \cfrac {1} {1 + e ^{-x}}$
+            -   intuitive goal:
+                1.  take all the words that have shown up and give them big possibilities (scores);
+                1.  and take negative sampling some random words that have not shown up and give them as small possibilities (scores) as possible.
+                    -   `-1` in $-u_k^T v_c$: make random words with small possibilities (scores).
+                        -   it flip the result by axis y in sigmoid.
+                        -   Meaning `1 - possibility`.
+            -   `K`: could be 10, 15 negative samples.
+            -   How to sample?
+                -   ![](img/2020-12-13-12-10-17.png)
+                -   `w` := every word in the entire vocabulary.
+                -   `P(w)` := the possibility of being picked as a negative sample word?
+                    -   a probability distribution.
+                -   `U(w)` sums up the count of the word for every word in the vocabulary.
+                -   `Z`: the size of the entire vocabulary.
+                    -   for normalization.
+                    -   capital Z often means for normalization.
 
 ### Prediction function
 
@@ -148,7 +170,7 @@ To put all word vectors to the vector space in the proper location. ![](img/2020
     -   each vector has `d` dimensions
 -   `u` and `v` vectors are initialized randomly
 
-Learn more from the back propagation...
+Learn more from the backpropagation...
 
 Gradient:
 
@@ -184,3 +206,18 @@ Stochastic Gradient Descent
     -   solution
         -   assign selected rows to the slices of `theta_grad`? or `theta`?
 
+### Details
+
+Why two `u`, `v` vectors for the same word in $\theta$?
+
+-   easy to calculate $\cfrac {\partial log(P(o | c))} {\partial v_c}$
+-   since the dot product is symmetric, the two vectors are close to each other. later take the average of the two vectors
+
+Two model variants (training logic):
+
+-   Skip-grams (SG)
+    -   predict context words (position independent) given center word.
+-   Continuous Bag of Words (CBOW)
+    -   predict center word from the bag of context words
+
+... Skip-gram model is selected.
