@@ -74,7 +74,7 @@ banking = [0.286, 0.792, -0.177, -0.107, 0.109, -0.542, 0.349, 0.271]
 
 To put all word vectors to the vector space in the proper location. ![](img/2020-12-12-16-12-16.png)
 
-1.  Neural network: having `into` --{predict}--> `problems`, `turing`, `banking`, `crises`
+1.  Neural network: having `into` --{predict}--> `problems`, `turning`, `banking`, `crises`
 1.  Change word vectors
 1.  go to the next word ![](img/2020-12-12-16-15-27.png)
 1.  loop
@@ -114,6 +114,8 @@ To put all word vectors to the vector space in the proper location. ![](img/2020
             }
         }
         ```
+
+    -   `m` is usually from 5 to 10
 
 -   objective function
     -   := a loss function
@@ -208,6 +210,10 @@ Stochastic Gradient Descent
 
 ### Details
 
+The analogy could also be found in the word vectors
+
+-   $v_{queen} \approx v_{king} - v_{man} + v_{woman}$.
+
 Why two `u`, `v` vectors for the same word in $\theta$?
 
 -   easy to calculate $\cfrac {\partial log(P(o | c))} {\partial v_c}$
@@ -221,3 +227,111 @@ Two model variants (training logic):
     -   predict center word from the bag of context words
 
 ... Skip-gram model is selected.
+
+### Window-based co-occurrence matrix
+
+-   suppose window size is 1 (normally 5-10)
+-   ![](img/2020-12-13-13-49-07.png)
+    -   symmetric
+    -   raw count
+-   Cons:
+    -   matrix is too big. `shape = V * V`.
+        -   Solution
+            -   dense word vector
+                -   shrink to 25-1000 dimensions like word2vec
+                -   ![](img/2020-12-13-13-59-26.png)
+                -   ![](img/2020-12-13-13-59-55.png)
+                -   ![](img/2020-12-13-14-00-09.png)
+                -   but never works very well...
+            -   deal with high-frequency words when counting
+                -   ways to modify the count
+                    -   log scale the count
+                        -   `log(X)`?
+                    -   ceiling function to the count
+                        -   `min(X, t)`, `t` ~= `100`
+                    -   Use Pearson correlations instead of counts, then set negative values to 0
+-   Pros:
+    -   ![](img/2020-12-13-14-16-24.png)
+
+### Combining count matrix and neural methods
+
+![](img/2020-12-13-14-17-35.png)
+
+Aim: meaning components <--{encode}-- ratios of co-occurrence probabilities.
+
+![](img/2020-12-13-14-28-57.png)
+
+-   $P(x | thing)$ := co-occurrence probability.
+-   Count matrix embodies in the columns?
+-   Neural methods embody in the function $P(x | thing)$?
+
+![](img/2020-12-13-14-40-31.png)
+
+![](img/2020-12-13-14-41-20.png)
+
+-   $w_i^T w^{'}_j - logX_{i j}$ := difference.
+-   $b_i$ and $b^{'}_j$ := biases.
+
+### Evaluate word vectors
+
+![](img/2020-12-13-14-48-29.png)
+
+-   methods:
+    -   intrinsic
+        -   if guessing the right **part** of a speech?
+        -   if putting synonyms close together?
+    -   extrinsic
+        -   evaluate in specific real applications.
+        -   web search.
+        -   question answering.
+        -   phone dialog system.
+
+![](img/2020-12-13-14-52-31.png)
+
+![](img/2020-12-13-14-54-03.png)
+
+![](img/2020-12-13-14-54-53.png)
+
+![](img/2020-12-13-14-55-19.png)
+
+![](img/2020-12-13-14-57-23.png)
+
+![](img/2020-12-13-14-57-49.png)
+
+![](img/2020-12-13-14-59-59.png)
+
+![](img/2020-12-13-15-01-57.png)
+
+-   wiki explains the connections and relations of concepts.
+
+![](img/2020-12-13-15-04-28.png)
+
+-   human column := human judge the similarity of the two words by scales from 0 to 10.
+-   then check the distance between the word vectors in the space.
+
+![](img/2020-12-13-15-44-26.png)
+
+### Ambiguity of word senses
+
+![](img/2020-12-13-15-16-39.png)
+
+-   ![](img/2020-12-13-15-17-48.png)
+
+![](img/2020-12-13-15-18-40.png)
+
+-   For each common word, cluster all the contexts in which it occurs. To see if there are multiple clear clusters. If so, split the word into pseudo-words. Then change the words in the corpus.
+-   separate senses -> pseudo-words
+    -   $bank_1$
+    -   $bank_2$
+-   but different senses are also relative to each other. Different senses are derivative from the previous existing senses.
+
+![](img/2020-12-13-15-21-20.png)
+
+-   superposition := weighted average / weighted sum.
+-   $v_{pike}$ := superposition.
+-   $v_{pike_n}$ := components.
+-   $a_n$ := frequency of $v_{pike_n}$.
+-   $a_n v_{pike_n}$ := weighted component.
+-   what benefit? Given superposition, find different component vectors.
+    -   too many dimensions -> components/senses are sparse throughout the space -> easy to separate components out from a superposition.
+    -   `tie` has five underlying meaning components. (the five columns)
