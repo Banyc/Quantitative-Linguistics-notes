@@ -10,6 +10,7 @@
             | Det Adj N
         ```
 -   Dependency structure
+
     -   ![](img/2020-12-14-08-40-01.png)
         -   `[ ]` := sub unit
             -   either `{[ ]}` or `[] {}`, not allow `[ { ] }`?
@@ -61,7 +62,7 @@ vs.
                       /      \
                    cops       man
             /     /                 \ (nmod)
-          /      /                    \   
+          /      /                    \
        San    Jose                    knife
                                      /
                                     /
@@ -135,7 +136,7 @@ No        cognitive
   /                 \
 No                  issues
          /         /
-        , cognitive 
+        , cognitive
 ```
 
 -   `,` := and.
@@ -173,5 +174,82 @@ Students                    experience
 ```
 
 ### Verb Phrase (VP) attachment ambiguity
+
+![](img/2020-12-14-13-03-07.png)
+
+```
+Mutilated body washes up on Rio beach
+```
+
+-   `... to VP`.
+
+## Dependency Grammar
+
+![](img/2020-12-14-13-11-42.png)
+
+-   Linear: `The results demonstrated that KaiC interacts rhythmically with SasA KaiA and KaiB`.
+-   information units:
+    -   `KaiC interacts SasA`
+    -   `KaiC interacts SasA KaiA`
+    -   `KaiC interacts SasA KaiB`
+-   `nsubj` := nominal subject
+-   `det` := determiner
+-   `nmod` := nominal modifier
+-   `ccomp` := clausal complement
+-   `cc` := Coordinating Conjunction
+-   `nn` := Common noun (singular noun)
+-   `nns` := plural noun
+-   `nnp` := Proper Noun
+-   `jj` := adjective
+-   `case` := "Case" is a linguistics term regarding a manner of categorizing nouns, pronouns, adjectives, participles, and numerals according to their traditionally corresponding grammatical functions within a given phrase, clause, or sentence.
+
+![](img/2020-12-14-13-45-56.png)
+
+-   `aux` := Auxiliary, a helping element, typically a verb, that adds meaning to the basic meaning of the main verb in a clause.
+
+![](img/2020-12-14-13-58-37.png)
+
+![](img/2020-12-14-14-01-15.png)
+
+-   Universal Dependencies
+    -   corpus
+    -   <https://universaldependencies.org/>
+    -   unify all grammar structures -> become standard.
+    -   authorize on ambiguity
+
+![](img/2020-12-14-14-11-49.png)
+
+-   if non-projection is not allowed, modify:
+    -   `I'll give a talk on bootstrapping tomorrow.`
+
+## Transition based parsing
+
+![](img/2020-12-14-14-14-49.png)
+
+-   `A` := dependencies.
+-   $\sigma$ := stack.
+-   $\beta$ := buffer.
+
+Parsing:
+
+1. ![](img/2020-12-14-14-19-36.png)
+    - dark frame := stack.
+    - yellow frame := buffer.
+    - only `[root]` is on the stack -> shift.
+1. ![](img/2020-12-14-14-23-00.png)
+    - check if `I` depends on `[root]` -> false -> shift.
+1. ![](img/2020-12-14-14-29-40.png)
+    - find dependency in stack that `stack[1] <- stack[2]` -> reduction -> Left-Arc.
+1. ![](img/2020-12-14-14-24-02.png)
+    - remove dependent from stack and add dependency to `A`.
+    - could have had a reduction again saying `[root] -> ate`, but there is `fish` on the buffer that `ate -> fish` -> shift.
+1. ![](img/2020-12-14-14-36-02.png)
+    - find dependency in stack that `stack[1] -> stack[2]` -> reduction -> Right-Arc.
+1. ![](img/2020-12-14-14-24-43.png)
+    - remove dependent from stack and add dependency to `A`.
+    - find dependency in stack that `stack[0] -> stack[1]` -> reduction -> Right-Arc.
+1. ![](img/2020-12-14-14-25-02.png)
+    - remove dependent from stack and add dependency to `A`.
+    - only `[root]` on stack and empty buffer -> finish.
 
 
