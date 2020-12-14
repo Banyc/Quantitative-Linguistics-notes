@@ -52,7 +52,8 @@ Prepositional phrase could be attached to different tokens.
        San    Jose                 with
 ```
 
-... cops using a knife to kill a man.
+-   cops using a knife to kill a man.
+-   ![](img/2020-12-14-20-23-06.png)
 
 vs.
 
@@ -69,7 +70,7 @@ vs.
                                    with
 ```
 
-... cops kill the man who was holding a knife.
+-   cops kill the man who was holding a knife.
 
 ![](img/2020-12-14-10-09-30.png)
 
@@ -91,27 +92,25 @@ Shuttle veteran and longtime NASA executive Fred Gregory appointed to board
                                             Fred Gregory              board
              /                                                       /
         veteran                                                    to
-       /                         \
-Shuttle                           executive
-                   /              /
-                and          NASA
-                           /
-                    longtime
+       /       \                 \
+Shuttle         and               executive
+                            /    /
+                    longtime NASA
 ```
 
 ```
                                                          appointed
               /                                                       \
         veteran                                                       board
-       /                                     \                       /
-Shuttle                                     Fred Gregory           to
-                   /                        /
-                and               executive
-                                 /
-                             NASA
-                            /
-                    longtime
+       /       \                             \                       /
+Shuttle         and                         Fred Gregory           to
+                                            /
+                                  executive
+                            /    /
+                    longtime NASA
 ```
+
+-   ![](img/2020-12-14-20-04-01.png)
 
 ![](img/2020-12-14-12-08-52.png)
 
@@ -123,23 +122,23 @@ No heart, cognitive issues
                     issues
        /
    heart
-  /      \
-No        cognitive
-         /
-        ,
+  /    \ \
+No      , cognitive
 ```
 
 -   `,` := or.
+-   neutral view.
 
 ```
    heart
-  /                 \
-No                  issues
-         /         /
-        , cognitive
+  /    \            \
+No      ,           issues
+                   /
+          cognitive
 ```
 
 -   `,` := and.
+-   negative view.
 
 ### Adjectival modifier ambiguity
 
@@ -258,7 +257,7 @@ Parsing:
 
 Con:
 
--   travel exponential size tree of possibilities. 
+-   travel exponential size tree of possibilities.
 -   even dynamic programming reduce to $O(n^2)$.
 
 ### Machine learning based parser
@@ -288,5 +287,3 @@ Con:
 -   `UAS` := unlabeled attachment score.
     -   ignore the correctness of labels.
 -   `LAS` := labeled attachment score.
-
-
