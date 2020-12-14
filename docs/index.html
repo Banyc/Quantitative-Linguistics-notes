@@ -71,6 +71,18 @@
                 repo: "",
                 loadSidebar: true,
                 loadNavbar: true,
+
+                search: 'auto',
+
+                search: {
+                    maxAge: 86400000, // Expiration time, the default one day
+                    paths: 'auto',
+                    placeholder: 'Type to search',
+                    noData: 'No Results!',
+                    // Headline depth, 1 - 6
+                    depth: 6,
+                    hideOtherSidebarContent: false, // whether or not to hide other sidebar content
+                }
             };
         </script>
         <!-- Docsify v4 -->
@@ -86,5 +98,7 @@
             rel="stylesheet"
             href="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"
         />
+        <!-- search plugin -->
+        <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
     </body>
 </html>
