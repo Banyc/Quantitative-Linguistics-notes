@@ -222,7 +222,11 @@ Mutilated body washes up on Rio beach
 -   if non-projection is not allowed, modify:
     -   `I'll give a talk on bootstrapping tomorrow.`
 
-## Transition based parsing
+## Parsing
+
+### Transition based parsing
+
+Arc-standard transition-based parser:
 
 ![](img/2020-12-14-14-14-49.png)
 
@@ -251,5 +255,25 @@ Parsing:
 1. ![](img/2020-12-14-14-25-02.png)
     - remove dependent from stack and add dependency to `A`.
     - only `[root]` on stack and empty buffer -> finish.
+
+Con:
+
+-   travel exponential size tree of possibilities. 
+-   even dynamic programming reduce to $O(n^2)$.
+
+### Machine learning based parser
+
+![](img/2020-12-14-14-43-46.png)
+
+-   machine learning classifier
+    -   empirical.
+    -   predicts the next step:
+        -   shift
+        -   left-arc
+        -   right-arc
+        -   ...
+    -   high accuracy.
+    -   no traversal at all.
+    -   time complexity: $O(n)$.
 
 
