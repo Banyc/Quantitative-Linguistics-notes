@@ -276,4 +276,17 @@ Con:
     -   no traversal at all.
     -   time complexity: $O(n)$.
 
+### Evaluation of parsing
+
+![](img/2020-12-14-15-03-32.png)
+
+-   `Gold` := correct answer.
+-   `Parsed` := prediction.
+-   `deps` := dependency (relation, connection, edge).
+-   `Acc` := accuracy.
+-   `label` := `nsubj`, `root`, `det`, `nn`, `obj`, `ccomp`...
+-   `UAS` := unlabeled attachment score.
+    -   ignore the correctness of labels.
+-   `LAS` := labeled attachment score.
+
 
