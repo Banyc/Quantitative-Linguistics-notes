@@ -78,7 +78,11 @@ $$
 
 多次访问的记忆会降低访问难度？这表现为 locality ？
 
-多次访问的记忆 会成为 chunking，可以减少记忆时间。语言学习很多时候也是在形成 chunking
+多次访问的记忆 会成为 chunking，可以减少记忆时间。语言学习很多时候也是在形成 chunking。
+
+dependent 进入 working memory 以后，当发现他的 governor，这个 dependent 就可以 pop out。
+
+-   因此两个关联词之间的距离就受 working memory 的？所限制。
 
 #### Dependency Locality Theory (DLT)
 
@@ -124,6 +128,10 @@ SVO (VO) := 宾语放在动词后面
 
 SOV (OV, head-final, post-verbal) := 动词放在宾语后面
 
+### Sentence Length
+
+![](img/2020-12-16-17-14-16.png)
+
 ## Facts
 
 -   DDM is human-driven
@@ -164,6 +172,17 @@ SOV (OV, head-final, post-verbal) := 动词放在宾语后面
             -   ![](img/2020-12-10-23-58-42.png)
         -   多用可预测的 DD 组合
             -   容易预测到的 words 可以降低 access 的难度
+-   Sentence Length vs MDD
+    -   ![](img/2020-12-16-17-16-59.png)
+    -   变化不大
+    -   MDD: Chinese > English
+-   Sentence Length vs SOV
+    -   ![](img/2020-12-16-17-19-03.png)
+-   Sentence Length vs adjacent dependencies
+    -   ![](img/2020-12-16-17-20-10.png)
+    -   more adjacent dependencies -> less MDD
+    -   在 sentence length 增加的时候，仍然尽量把 MDD 压低。
+
 
 ## References
 
@@ -171,3 +190,5 @@ SOV (OV, head-final, post-verbal) := 动词放在宾语后面
 -   <https://doi.org/10.1016/j.plrev.2017.03.002>
 -   <https://doi.org/10.1016/j.langsci.2016.09.006>
     -   DD 的定义
+-   <https://doi.org/10.1016/j.langsci.2015.04.002>
+    -   Sentence Length
