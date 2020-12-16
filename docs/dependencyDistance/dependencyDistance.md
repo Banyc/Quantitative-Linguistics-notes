@@ -34,6 +34,11 @@ level 意义与图论的相似，从 0 开始算起？
 
 index 0 是一个 dummy，只指向 `saw`。剩下 index 按照阅读顺序分配。index 是线性位置。
 
+![](img/2020-12-16-17-54-23.png)
+
+-   A dependency pair is head-initial if its head precedes the dependent.
+-   it is head-final if the head follows the dependent.
+
 ### Dependency Distance
 
 Dependency Distance 是从语言中**人为**提取出来的概念。
@@ -122,11 +127,19 @@ Projection := in-order traversal 的结果**等于**语句阅读结果。依存�
 
 如果交叉，依存距离会增加很多，理解记忆难度也增加
 
+![](img/2020-12-16-18-46-34.png)
+
 ### SVO vs SOV
 
 SVO (VO) := 宾语放在动词后面
 
 SOV (OV, head-final, post-verbal) := 动词放在宾语后面
+
+head-final language := 语言内部 head-final dependency parts 占大多数？
+
+-   ![](img/2020-12-16-18-09-00.png)
+-   ![](img/2020-12-16-18-09-43.png)
+-   ![](img/2020-12-16-18-10-43.png)
 
 ### Sentence Length
 
@@ -136,6 +149,7 @@ SOV (OV, head-final, post-verbal) := 动词放在宾语后面
 
 -   DDM is human-driven
 -   treebanks 是一种 corpus 数据
+    -   ![](img/2020-12-16-18-02-36.png)
 -   人类语言普遍往 DDM 发展
     -   working memory 记忆词语的难度随着 DD 的增大而增加
     -   ![](img/2020-12-10-22-44-50.png)
@@ -192,3 +206,5 @@ SOV (OV, head-final, post-verbal) := 动词放在宾语后面
     -   DD 的定义
 -   <https://doi.org/10.1016/j.langsci.2015.04.002>
     -   Sentence Length
+-   <https://doi.org/10.1016/j.lingua.2009.10.001>
+    -   POS 的 linear 顺序
