@@ -1,5 +1,5 @@
 
-- 依存距离
+- 依存语法
     - [依存语法](dependencyGrammar/dependencyGrammar.md)
     - [依存距离](dependencyGrammar/dependencyDistance.md)
     - [依存方向](dependencyGrammar/dependencyDirection.md)
