@@ -4,6 +4,7 @@
     - [依存距离](dependencyGrammar/dependencyDistance.md)
     - [依存方向](dependencyGrammar/dependencyDirection.md)
     - [工作记忆](dependencyGrammar/workingMemory.md)
+    - [配价](dependencyGrammar/valencyPattern.md)
 - NLP
     - [cs224](NLP/cs224.md)
     - [Word Vectors](NLP/WordVectors.md)
