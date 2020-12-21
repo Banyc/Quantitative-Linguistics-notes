@@ -36,3 +36,15 @@ index 0 是一个 dummy，只指向 `saw`。剩下 index 按照阅读顺序分�
 
 -   A dependency pair is head-initial if its head precedes the dependent.
 -   it is head-final if the head follows the dependent.
+
+## Chunking
+
+![](img/2020-12-21-20-28-21.png)
+
+-   chunking may be an important means to realize DDM in a linear sequence whose length is over 20.
+-   significantly reduce the number of dependency crossings.
+-   chunking contributes significantly to the low MDD of human languages.
+
+### References
+
+-   <https://doi.org/10.1002/cplx.21779>
