@@ -127,7 +127,13 @@ New measure for DD:
                 -   意识流比较容易 parse
                 -   从句比 and 复合句难 parse
         -   每个依赖距离都需要 square 一下。
-            -   符合 $O(n^2)$.
+            -   Pros:
+                -   符合 $O(n^2)$.
+                -   重点惩罚比较远的依存距离。
+            -   Cons:
+                -   $O(n^2)$ 指的是从无语法树到有语法树的大概时间复杂度。
+                -   现在是 given 语法树，计算具体的复杂度。
+                -   人脑可能能够做到 $O(nlogn)$?
     -   L Lei
         -   <https://www.tandfonline.com/doi/full/10.1080/09296174.2018.1504615>
 
@@ -190,3 +196,4 @@ Based on these discussions and experiments, we argue that **the annotation schem
 ## References
 
 -   <https://doi.org/10.17791/jcs.2008.9.2.159>
+-   online tools for universal dependencies - <http://lindat.mff.cuni.cz/services/udpipe/>
