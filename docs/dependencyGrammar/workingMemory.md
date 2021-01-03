@@ -51,7 +51,7 @@ principles of dependency-length minimization in grammar:
 
 incremental parsing strategy
 
-1. W <- input[i]
+1. W <- inputSequence[i]
 1. W.dependents.Add(headList[j])
 1. headList.Remove(j)
 1. if (W is wordList[k].dependent)
@@ -61,14 +61,14 @@ incremental parsing strategy
 1. wordList.Add(W)
 
 ```python
-for W in input:
-    for j in range(headList.Size):
-        if (headList[j] is W.dependent):
-            W.dependents.Add(headList[j])
+for W in inputSequence:  # W 就是句子里面的每一个词
+    for j in range(headList.Size):  # j 分别取 0, 1, ..., (<当前 headList 的长度> - 1).
+        if (headList[j] is W.dependent):  # 判断 headList 里面的第 j 个词是不是 W 的 dependent
+            W.dependents.Add(headList[j])  # 把第 j 个词放到 W 下面
             headList.Remove(j)
-    for k in range(wordList.Size):
-        if (W is wordList[k].dependent):
-            wordList[k].dependents.Add(W)
+    for k in range(wordList.Size):  # k 分别取 0, 1, ..., (<当前 wordList 的长度> - 1).
+        if (W is wordList[k].dependent):  # 判断 W 是不是 wordList 里面的第 k 个词 的 dependent
+            wordList[k].dependents.Add(W)  # 把 W 放到 第 k 个词下面
         else:
             headList.Add(W)
     wordList.Add(W)
@@ -78,6 +78,9 @@ for W in input:
 -   `headList` := currently found heads.
 -   $O(n^2)$
     -   suppose `headList[j] is W.dependent` and `W is wordList[k].dependent` are $O(1)$.
+        -   可能更像是人脑的工作方式。
+-   $O(n^3)$
+    -   suppose `headList[j] is W.dependent` and `W is wordList[k].dependent` are $O(n)$.
 
 Human parsing vs time complexity
 
@@ -92,8 +95,8 @@ Human parsing vs time complexity
 
 ### Dependency density
 
--   a dependency is open := the head of the dependent has still not found. The dependent is in the `headList`.
--   Dependency density := 每读一个词，sum 一下当前的 headList.Size。
+-   a dependency is open := the head of the dependent has still not been found. The dependent is in the `headList`.
+-   Dependency density := 每读一个词，sum 一下当前的 `headList.Size`。
 
 ### My guesses
 
@@ -101,11 +104,40 @@ New measure for DD:
 
 -   遗忘曲线。
     -   每个在 headList 的玩意都给标个 R 值。
+    -   暂时改进方案：
+        -   _
+            -   节拍
+                -   一个时间单位。
+                -   每次出现 从右到左的箭头，节拍++
 -   相连元素容易同时记忆。无关元素难以同时记忆。
     -   相连 := dependency.
-    -   暂时：同一个 root 下面的所有元素 R 值 == root.R.
+    -   暂时改进方案：
+        -   _
+            -   同一个 root 下面的所有元素 R 值 == root.R.
 -   新的 DD 计算方式
-    -   dependent 还作为 head 的时候，R 值下降的总额。
+    -   _
+        -   dependent 还作为 head 的时候，R 值下降的总额。
+    -   _
+        -   不计算从左往右的依赖距离。
+            -   只计算从右往左的依赖距离。
+            -   计算从左往右的依赖距离也是可以的。
+            -   主要依据:
+                -   计算 `headList[j] is W.dependent` and `W is wordList[k].dependent` 的 time complexity.
+                -   人倾向于 parse 从左往右
+                -   意识流比较容易 parse
+                -   从句比 and 复合句难 parse
+        -   每个依赖距离都需要 square 一下。
+            -   符合 $O(n^2)$.
+    -   L Lei
+        -   <https://www.tandfonline.com/doi/full/10.1080/09296174.2018.1504615>
+
+测试用例子：
+
+```
+I am a psycho to whom she talks.
+
+I am a psycho and she talks to the psycho.
+```
 
 New parsing algorithm:
 
