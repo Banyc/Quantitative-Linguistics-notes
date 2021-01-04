@@ -128,8 +128,9 @@ New measure for DD:
                 -   从句比 and 复合句难 parse
         -   每个依赖距离都需要 square 一下。
             -   Pros:
-                -   符合 $O(n^2)$.
+                -   符合 $O(n^2)$ 的 time complexity expectation.
                 -   重点惩罚比较远的依存距离。
+                -   MDD 表达的是 space complexity, O(n)，所以也符合预期。
             -   Cons:
                 -   $O(n^2)$ 指的是从无语法树到有语法树的大概时间复杂度。
                 -   现在是 given 语法树，计算具体的复杂度。
