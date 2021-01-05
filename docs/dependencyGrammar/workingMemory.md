@@ -99,9 +99,9 @@ for W in inputSentence:
     -   steps in visiting wordList might be skipped.
 -   average case: $O(n logn)$?
     -   the number of steps in visiting wordList might only be $logn$
+        -   可能更像是人脑的工作方式。
 -   worst case: $O(n^2)$
     -   suppose `headList[j] is W.dependent` and `W is wordList[k].dependent` are $O(1)$.
-        -   可能更像是人脑的工作方式。
 -   worst case: $O(n^3)$
     -   suppose `headList[j] is W.dependent` and `W is wordList[k].dependent` are $O(n)$.
 
@@ -152,22 +152,25 @@ New measure for DD:
         -   每个依赖距离都需要 square 一下。
             -   Pros:
                 -   符合 $O(n^2)$ 的 time complexity expectation.
+                    -   很有可能只是巧合而已
                 -   重点惩罚比较远的依存距离。
                 -   MDD 表达的是 space complexity, O(n)，所以也符合预期。
+                    -   很有可能只是巧合而已
                     -   MDD 大量被称为 complexity 的度量，其实只是 space 层面的，不应该是 time 层面的
                     -   _
                         -   suppose:
                             -   $n$ is the length of a sentence
                             -   $n$ grows
-                        -   MDD grows matches $O(n)$, **might** (not necessary) represent space complexity.
-                        -   MDD grows far better than $O(n^2)$, **might not** represent time complexity.
-                        -   new formula grows in $O(n^2)$?
+                        -   SDD grows matches $O(nlogn)$, **might** (not necessary) represent space complexity.
+                        -   MDD grows slower than $O(n)$, **might** represent time complexity.
             -   Cons:
-                -   $O(n^2)$ 指的是从无语法树到有语法树的大概时间复杂度。
+                -   $O(nlogn)$ 指的是从无语法树到有语法树的大概时间复杂度。
                 -   现在是 given 语法树，计算具体的复杂度。
                 -   人脑可能能够做到 $O(nlogn)$?
     -   L Lei
         -   <https://www.tandfonline.com/doi/full/10.1080/09296174.2018.1504615>
+-   
+
 
 测试用例子：
 
