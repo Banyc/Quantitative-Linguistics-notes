@@ -61,25 +61,48 @@ incremental parsing strategy
 1. wordList.Add(W)
 
 ```python
-for W in inputSequence:  # W 就是句子里面的每一个词
-    for j in range(headList.Size):  # j 分别取 0, 1, ..., (<当前 headList 的长度> - 1).
-        if (headList[j] is W.dependent):  # 判断 headList 里面的第 j 个词是不是 W 的 dependent
-            W.dependents.Add(headList[j])  # 把第 j 个词放到 W 下面
-            headList.Remove(j)
-    for k in range(wordList.Size):  # k 分别取 0, 1, ..., (<当前 wordList 的长度> - 1).
-        if (W is wordList[k].dependent):  # 判断 W 是不是 wordList 里面的第 k 个词 的 dependent
-            wordList[k].dependents.Add(W)  # 把 W 放到 第 k 个词下面
-        else:
-            headList.Add(W)
+# W is each word in the sentence `inputSentence`
+for W in inputSentence:
+    # add W to wordList.
     wordList.Add(W)
+    # the following for-loop is to find out W's dependents from headList
+    # j each time assigns 0, 1, ..., <current size of headList> - 1.
+    for j in range(headList.Size):
+        # judge if the j-th word in headList is the dependent of W.
+        if (headList[j] is W.dependent):
+            # assign the j-th word to the set of dependents under W.
+            W.dependents.Add(headList[j])
+            # remove the j-th word from headList
+            headList.Remove(j)
+    # initiate status that W has not found a governor
+    hasWFoundGovernor = False
+    # the following for-loop is to find out W's governor from wordList
+    # k each time assigns 0, 1, ..., <current size of wordList> - 1.
+    for k in range(wordList.Size):
+        # judge if W is the dependent of the k-th word in wordList.
+        if (W is wordList[k].dependent):
+            # assign W to the set of dependent under the k-th word in wordList.
+            wordList[k].dependents.Add(W)
+            # W has found its governor
+            hasWFoundGovernor = True
+            # skip to the next W
+            break
+    # if W has not found its governor
+    if (not hasWFoundGovernor):
+        # add W to headList.
+        headList.Add(W)
 ```
 
 -   `headList` is the working memory.
 -   `headList` := currently found heads.
--   $O(n^2)$
+-   best case: $O(n)$
+    -   steps in visiting wordList might be skipped.
+-   average case: $O(n logn)$?
+    -   the number of steps in visiting wordList might only be $logn$
+-   worst case: $O(n^2)$
     -   suppose `headList[j] is W.dependent` and `W is wordList[k].dependent` are $O(1)$.
         -   可能更像是人脑的工作方式。
--   $O(n^3)$
+-   worst case: $O(n^3)$
     -   suppose `headList[j] is W.dependent` and `W is wordList[k].dependent` are $O(n)$.
 
 Human parsing vs time complexity
@@ -131,6 +154,14 @@ New measure for DD:
                 -   符合 $O(n^2)$ 的 time complexity expectation.
                 -   重点惩罚比较远的依存距离。
                 -   MDD 表达的是 space complexity, O(n)，所以也符合预期。
+                    -   MDD 大量被称为 complexity 的度量，其实只是 space 层面的，不应该是 time 层面的
+                    -   _
+                        -   suppose:
+                            -   $n$ is the length of a sentence
+                            -   $n$ grows
+                        -   MDD grows matches $O(n)$, **might** (not necessary) represent space complexity.
+                        -   MDD grows far better than $O(n^2)$, **might not** represent time complexity.
+                        -   new formula grows in $O(n^2)$?
             -   Cons:
                 -   $O(n^2)$ 指的是从无语法树到有语法树的大概时间复杂度。
                 -   现在是 given 语法树，计算具体的复杂度。
